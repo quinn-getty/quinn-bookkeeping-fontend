@@ -6,7 +6,7 @@ export const Welcome = defineComponent({
   setup: (props, context) => {
     return () => (
       <div class={style.wrapper}>welcome
-        <RouterView />
+        {/* <RouterView /> */}
       </div>
     )
   }
