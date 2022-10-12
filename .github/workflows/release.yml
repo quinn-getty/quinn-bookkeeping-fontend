@@ -1,8 +1,14 @@
 name: release
 
 on:
-  push:
-    branches: main # main 分支提交时触发
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
 
 jobs:
   build:
