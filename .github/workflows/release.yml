@@ -1,0 +1,22 @@
+name: release
+
+on:
+  push:
+    branches: master # master 分支提交时触发
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # 运行环境
+    steps:
+      - name: 签出代码
+        uses: actions/checkout@master
+      - name: 安装 nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - name: 安装依赖
+        run: npm install
+        working-directory: client-vue/mobile # working-directory 指定 shell 命令运行目录
+      - name: 前端项目打包
+        run: npm run build
+        working-directory: client-vue/mobile
