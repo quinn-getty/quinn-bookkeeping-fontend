@@ -1,6 +1,6 @@
 # 手动触发
 # 手动触发事件
-name: release
+name: 手动部署
 
 on:
   workflow_dispatch:
