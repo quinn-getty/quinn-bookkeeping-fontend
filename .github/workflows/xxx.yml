@@ -45,12 +45,22 @@ jobs:
       #     remote_path: '/www/wwwroot/www.ailan.top/'
       #     args: "-o ConnectTimeout=5"
        # Deploy
-      - name: Deploy
-        uses: easingthemes/ssh-deploy@v2.0.7
+      # - name: Deploy
+      #   uses: easingthemes/ssh-deploy@v2.0.7
+      #   env:
+      #     SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
+      #     ARGS: "-avz --delete"
+      #     SOURCE: "public/"
+      #     REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+      #     REMOTE_USER: ${{ secrets.REMOTE_USER }}
+      #     TARGET: ${{ secrets.TARGET }}
+      - name: Deploy to Staging server
+        uses: easingthemes/ssh-deploy@v2.1.6
         env:
           SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
-          ARGS: "-avz --delete"
-          SOURCE: "public/"
+          ARGS: "-rltgoDzvO"
+          SOURCE: './public/' #仓库根路径
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.TARGET }}
+          TARGET: '/home/mangosteen/'  #目标服务器的路径
+          # EXCLUDE: "/dist/, /node_modules/"   #排除文件夹
