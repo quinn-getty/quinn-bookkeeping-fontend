@@ -8,19 +8,22 @@ jobs:
   build:
     runs-on: ubuntu-latest # 运行环境
     steps:
-      - name: 签出代码
+      - name: 签出代码🛎️
         uses: actions/checkout@main
-      - name: 安装 nodejs
+
+      - name: 安装 nodejs v16
         uses: actions/setup-node@v2
         with:
-          node-version: "14"
+          node-version: "16"
+
       - name: 安装依赖
         run: npm install
-        working-directory: client-vue/mobile # working-directory 指定 shell 命令运行目录
+        run: each pwd
+
       - name: 前端项目打包
         run: npm run build
-        working-directory: client-vue/mobile
-      - name: 发布腾讯云
+
+      - name: 发布服务器
         uses: wlixcc/SFTP-Deploy-Action@v1.0 # 使用 SFTP 协议上传到腾讯云
         with:
           username: 'root'
