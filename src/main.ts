@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
-import './style.css'
+import './style.scss'
 
-import {createRouter} from 'vue-router'
+import { createRouter } from 'vue-router'
 import App from './App'
 import routes from './config/routers'
 import history from './shared/history'
