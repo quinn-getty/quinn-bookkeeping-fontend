@@ -11,10 +11,16 @@ jobs:
       - name: 签出代码🛎️
         uses: actions/checkout@main
 
-      - name: 安装 nodejs v16
-        uses: actions/setup-node@v2
+      - name: node yarn 🛎️
+      - uses: actions/setup-node@v3
         with:
-          node-version: "16"
+          node-version: '14'
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile # optional, --immutable
+      - run: yarn -v
+
+      - name: 查看版本
+        run: npm install
 
       - name: 安装依赖
         run: npm install
@@ -22,12 +28,12 @@ jobs:
       - name: 前端项目打包
         run: npm run build
 
-      - name: 发布服务器
-        uses: wlixcc/SFTP-Deploy-Action@v1.0 # 使用 SFTP 协议上传到腾讯云
-        with:
-          username: 'root'
-          server: '${{ secrets.TENCENT_SERVER_HOST }}'
-          ssh_private_key: '${{ secrets.TENCENT_SERVER_PRIVATE_KEY }}'
-          local_path: 'client-vue/mobile/dist/*'
-          remote_path: '/www/wwwroot/www.ailan.top/'
-          args: "-o ConnectTimeout=5"
+      # - name: 发布服务器
+      #   uses: wlixcc/SFTP-Deploy-Action@v1.0 # 使用 SFTP 协议上传到腾讯云
+      #   with:
+      #     username: 'root'
+      #     server: '${{ secrets.TENCENT_SERVER_HOST }}'
+      #     ssh_private_key: '${{ secrets.TENCENT_SERVER_PRIVATE_KEY }}'
+      #     local_path: 'client-vue/mobile/dist/*'
+      #     remote_path: '/www/wwwroot/www.ailan.top/'
+      #     args: "-o ConnectTimeout=5"
