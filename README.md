@@ -47,3 +47,34 @@ const CompoentsB = defineComponent({
 
 
 ```
+
+# vue router config 可以使用多个组件
+
+``` tsx
+// config
+const routes: RouteRecordRaw[] = [
+  {
+    path: '/a',
+    component: Welcome,
+    children: [
+      { path: '1', components: { main: OneMain, footer: OneFooter } }, // OneMain 、 OneFooter 为组件
+      // ....
+    ]
+  }
+]
+
+
+// 引用到的页面
+export const Welcome = defineComponent({
+  setup: (props, context) => {
+    return () => (
+      <div>
+        <main> <RouterView name='main' /> </main>
+        <footer> <RouterView name="footer" /> </footer>
+      </div>
+    )
+  }
+})
+
+
+```
