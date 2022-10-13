@@ -76,5 +76,15 @@ export const Welcome = defineComponent({
   }
 })
 
+```
 
+# vue function组件如何使用
+
+``` tsx
+export const FourFooter: FunctionalComponent = (props, context) => {
+  return <>
+  // tsx code tempate
+  </>
+}
+FourFooter.displayName = 'FourFooter' // 生产环境会有报错提示
 ```
