@@ -1,8 +1,8 @@
 import { defineComponent } from 'vue';
 import style from '../index.module.scss'
-import cloud from '../../../assets/icons/cloud.svg'
 import { RouterLink } from 'vue-router';
 import WelcomeLayout from '../layout';
+import IconSvg from '../../icon';
 
 export const FourFooter = () => {
   return <>
@@ -16,7 +16,7 @@ FourFooter.displayName = 'FourFooter'
 export const FourMain = defineComponent({
   setup: (props, context) => {
     const slots = {
-      icon: () => <img src={cloud} />,
+      icon: () => <IconSvg name='cloud' />,
       text: () => <h2> 会挣钱<br /> 还要会省钱 </h2>,
     }
     return () => (

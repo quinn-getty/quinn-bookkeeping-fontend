@@ -1,8 +1,7 @@
 import { defineComponent } from 'vue';
-import style from '../index.module.scss'
-import clock from '../../../assets/icons/clock.svg'
 import { RouterLink } from 'vue-router';
 import WelcomeLayout from '../layout';
+import IconSvg from '../../icon';
 
 export const TwoFooter = () => {
   return <>
@@ -16,7 +15,7 @@ TwoFooter.displayName = 'TwoFooter'
 export const TwoMain = defineComponent({
   setup: (props, context) => {
     const slots = {
-      icon: () => <img src={clock} />,
+      icon: () => <IconSvg name='clock' />,
       text: () => <h2> 会挣钱<br /> 还要会省钱 </h2>,
     }
     return () => (

@@ -1,8 +1,8 @@
 import { RouterLink } from "vue-router"
 import style from '../index.module.scss'
 import { defineComponent } from 'vue';
-import pig from '../../../assets/icons/pig.svg'
 import WelcomeLayout from '../layout';
+import IconSvg from "../../icon";
 
 export const OneFooter = () => {
   return <>
@@ -16,7 +16,8 @@ OneFooter.displayName = 'OneFooter'
 export const OneMain = defineComponent({
   setup: (props, context) => {
     const slots = {
-      icon: () => <img src={pig} />,
+      // icon: () => <img src={pig} />,
+      icon: () => <IconSvg name='pig' />,
       text: () => <h2> 会挣钱<br /> 还要会省钱 </h2>,
     }
     return () => (

@@ -5,6 +5,7 @@ import { createRouter } from 'vue-router'
 import App from './App'
 import routes from './config/routers'
 import history from './shared/history'
+import '@svgstore'
 
 const router = createRouter({ history, routes })
 
