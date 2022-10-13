@@ -1,5 +1,5 @@
 import { defineComponent } from 'vue';
-import style from './index.module.scss'
+import style from '../index.module.scss'
 
 export const WelcomeLayout = defineComponent({
   setup: (props, context) => {
@@ -14,5 +14,7 @@ export const WelcomeLayout = defineComponent({
     )
   }
 })
+
 WelcomeLayout.displayName = 'WelcomeLayout'
+
 export default WelcomeLayout
