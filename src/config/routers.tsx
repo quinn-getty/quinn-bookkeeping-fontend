@@ -7,7 +7,7 @@ import WelcomeThree from "../pages/welcome/three"
 import WelcomeTwo from "../pages/welcome/two"
 
 const routes: RouteRecordRaw[] = [
-  { path: '/', component: Foo },
+  { path: '/', redirect: '/welcome' },
   { path: '/about', component: Bar },
   {
     path: '/welcome',
