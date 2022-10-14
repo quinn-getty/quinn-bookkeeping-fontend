@@ -14,10 +14,11 @@ const routes: RouteRecordRaw[] = [
     path: '/welcome',
     component: Welcome,
     children: [
-      { path: '1', components: { main: OneMain, footer: OneFooter } },
-      { path: '2', components: { main: TwoMain, footer: TwoFooter } },
-      { path: '3', components: { main: ThreeMain, footer: ThreeFooter } },
-      { path: '4', components: { main: FourMain, footer: FourFooter } },
+      { path: '', redirect: '/welcome/1' },
+      { path: '1', name: 'Welcome1', components: { main: OneMain, footer: OneFooter } },
+      { path: '2', name: 'Welcome2', components: { main: TwoMain, footer: TwoFooter } },
+      { path: '3', name: 'Welcome3', components: { main: ThreeMain, footer: ThreeFooter } },
+      { path: '4', name: 'Welcome4', components: { main: FourMain, footer: FourFooter } },
     ]
   }
 ]
