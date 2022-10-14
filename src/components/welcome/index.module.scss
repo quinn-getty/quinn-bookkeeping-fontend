@@ -17,6 +17,15 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  .icon {
+    width: 200px;
+    height: 200px;
+  }
+
+  .fake {
+    visibility: hidden;
+  }
 }
 
 h2 {

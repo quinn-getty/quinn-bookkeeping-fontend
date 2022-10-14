@@ -1,6 +1,7 @@
 import { defineComponent } from 'vue';
 import { RouterLink } from 'vue-router';
 import WelcomeLayout from '../layout';
+import style from "../index.module.scss"
 import IconSvg from '../../icon';
 
 export const ThreeFooter = () => {
@@ -15,7 +16,7 @@ ThreeFooter.displayName = 'ThreeFooter'
 export const ThreeMain = defineComponent({
   setup: (props, context) => {
     const slots = {
-      icon: () => <IconSvg name='chart' />,
+      icon: () => <IconSvg name='chart' class={style.icon} />,
       text: () => <h2> 会挣钱<br /> 还要会省钱 </h2>,
     }
     return () => (

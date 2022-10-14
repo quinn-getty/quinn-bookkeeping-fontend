@@ -16,7 +16,7 @@ FourFooter.displayName = 'FourFooter'
 export const FourMain = defineComponent({
   setup: (props, context) => {
     const slots = {
-      icon: () => <IconSvg name='cloud' />,
+      icon: () => <IconSvg name='cloud' class={style.icon} />,
       text: () => <h2> 会挣钱<br /> 还要会省钱 </h2>,
     }
     return () => (
