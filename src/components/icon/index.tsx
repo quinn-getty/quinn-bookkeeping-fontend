@@ -5,7 +5,8 @@ type PropsType = {
   name: string
   class?: string
 }
-export const IconSvg = (props: PropsType) => {
+export const IconSvg = (props: PropsType, content: any) => {
+  console.log(content);
 
   const name = `#${props.name}`
   return <>
