@@ -6,6 +6,7 @@ import { TwoFooter, TwoMain } from "../components/welcome/two"
 import { OneFooter, OneMain } from "../components/welcome/one"
 import { ThreeFooter, ThreeMain } from "../components/welcome/three"
 import { FourFooter, FourMain } from "../components/welcome/four"
+import Start from "../pages/start"
 
 const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/welcome' },
@@ -20,7 +21,8 @@ const routes: RouteRecordRaw[] = [
       { path: '3', name: 'Welcome3', components: { main: ThreeMain, footer: ThreeFooter } },
       { path: '4', name: 'Welcome4', components: { main: FourMain, footer: FourFooter } },
     ]
-  }
+  },
+  { path: '/start', component: Start }
 ]
 
 export default routes

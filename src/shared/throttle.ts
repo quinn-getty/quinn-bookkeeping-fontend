@@ -1,14 +1,16 @@
-export const throttle = (fn: Function, time: number) => {
+export const throttle = <T extends ((...arg: any[]) => any)>(fn: T, time: number) => {
   let timer = NaN
-  return (...arg: any[]) => {
+  let result: ReturnType<T>
+  return (...arg: Parameters<T>) => {
     if (timer) {
-      return
+      return result
     } else {
+      result = fn(...arg)
       timer = setTimeout(() => {
-        fn(...arg)
         clearTimeout(timer)
         timer = NaN
       }, time);
+      return result
     }
   }
 }
