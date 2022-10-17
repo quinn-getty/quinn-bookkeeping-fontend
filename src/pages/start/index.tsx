@@ -1,4 +1,5 @@
 import { defineComponent, ref } from "vue";
+import { RouterLink } from "vue-router";
 import Button from "../../components/button";
 import Center from "../../components/center";
 import FloatButton from "../../components/float-button";
@@ -27,9 +28,13 @@ export const Start = defineComponent({
       </Center>
 
       <div class={style.button_wrapper}>
-        <Button class={style.button}>测试</Button>
+        <RouterLink to="/items/create">
+          <Button class={style.button}>开始记账</Button>
+        </RouterLink>
       </div>
-      <FloatButton class={style.icon} />
+      <RouterLink to="/items/create">
+        <FloatButton class={style.icon} />
+      </RouterLink>
     </>
   }
 })
