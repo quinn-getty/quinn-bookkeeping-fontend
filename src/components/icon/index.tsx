@@ -1,4 +1,4 @@
-import { defineComponent, ref, PropType } from "vue";
+import { defineComponent, ref, PropType, SetupContext } from "vue";
 import style from './index.module.scss'
 
 type PropsType = {
@@ -6,9 +6,7 @@ type PropsType = {
   class?: string,
   onClick?: (e: MouseEvent) => void
 }
-export const IconSvg = (props: PropsType, content: any) => {
-  // console.log(content);
-
+export const IconSvg = (props: PropsType, content: SetupContext) => {
   const name = `#${props.name}`
   return <>
     <svg class={[style.icon, props.class]} onClick={props.onClick}>
