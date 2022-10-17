@@ -5,7 +5,7 @@
   --welcome-bg-end: #8f4cd7;
   --welcome-nav-height: 64px;
   --welcome-nav-gap: 8px;
-  --z-index-bottom-nav: 10;
+  --z-index-bottom-nav: 8;
   --animation-duration: 0.5s;
   --button-bg: #5c33be;
   --button-text: #fff;
@@ -16,5 +16,11 @@
   --float-button-bg: var(--button-bg);
   --navbar-bg-start: var(--welcome-bg-start);
   --navbar-bg-end: var(--welcome-bg-end);
-  --navbar-text: #fff
+  --navbar-text: #fff;
+  --z-index-overlay: 16;
+  --overlay-mask-bg: #0008;
+  --overlay-bg: #fff;
+  --top-safe-area-height: 24px;
+  --overlay-user-bg: #5C33BE;
+  --overlay-user-text: white;
 }

@@ -3,14 +3,15 @@ import style from './index.module.scss'
 
 type PropsType = {
   name: string
-  class?: string
+  class?: string,
+  onClick?: (e: MouseEvent) => void
 }
 export const IconSvg = (props: PropsType, content: any) => {
-  console.log(content);
+  // console.log(content);
 
   const name = `#${props.name}`
   return <>
-    <svg class={[style.icon, props.class]}>
+    <svg class={[style.icon, props.class]} onClick={props.onClick}>
       <use xlinkHref={name}></use>
     </svg>
   </>
