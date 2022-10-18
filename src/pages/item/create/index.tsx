@@ -1,6 +1,7 @@
 import { defineComponent, ref, PropType } from "vue";
 import { useRouter } from "vue-router";
 import IconSvg from "../../../components/icon";
+import InputPad from "../../../components/input-pad";
 import MainLayout from "../../../components/main-layout";
 import { Tab, Tabs } from "../../../components/tabs";
 import style from './index.module.scss'
@@ -30,6 +31,9 @@ export const ItemCreate = defineComponent({
                 icon 列表2
               </Tab>
             </Tabs>
+            <div class={style.input_pad_wrapper}>
+              <InputPad />
+            </div>
           </>
         }}
       </MainLayout>
