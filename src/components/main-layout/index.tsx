@@ -1,8 +1,9 @@
-import { defineComponent, ref, PropType } from "vue";
+import { defineComponent, ref, PropType, SetupContext } from "vue";
 import NavBar from "../nav-bar";
 
 export const MainLayout = defineComponent({
-  setup(props, content) {
+  slots: ['icon', 'title'],
+  setup(props, content: SetupContext) {
     return () => <>
       <NavBar>
         {{

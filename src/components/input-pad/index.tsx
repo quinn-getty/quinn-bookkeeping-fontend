@@ -50,7 +50,7 @@ export const InputPad = defineComponent({
     ]
     const now = new Date()
     const refDate = ref<Date>(now)
-    const refAmount = ref('')
+    const refAmount = ref('0')
     const showSwitchTimePopup = ref(false)
     const setDate = (date: Date) => { refDate.value = date; hideTimePopup() }
     const hideTimePopup = () => {

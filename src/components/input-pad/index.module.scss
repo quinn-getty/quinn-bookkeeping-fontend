@@ -1,5 +1,7 @@
 .button_wrapper {
   display: grid;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
   grid-template-areas:
     "n1 n2 n3 d"
     "n4 n5 n6 d"
