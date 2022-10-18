@@ -1,6 +1,4 @@
 export const timer = (date: Date = new Date()) => {
-  console.log(date);
-
   const api = {
     format: (pattern = 'YYYY-MM-DD') => {
       // 目前支持的格式有 YYYY MM DD HH mm ss SSS
