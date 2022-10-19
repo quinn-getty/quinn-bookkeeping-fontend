@@ -12,17 +12,13 @@ import style from './index.module.scss'
 export const Start = defineComponent({
 
   setup(props, content) {
-    const overlayVisible = ref(false)
-    const iconClick = () => {
-      overlayVisible.value = !overlayVisible.value
-    }
+
     return () => <>
       <MainLayout>
         {{
-          icon: () => <IconSvg name="menu" onClick={iconClick} class={style.menu_icon} />,
+          icon: () => <Overlay />,
           title: () => <>山竹记账</>,
           default: () => <>
-            <Overlay visible={overlayVisible.value} onClose={iconClick}></Overlay>
             <Center class={style.pig_wrapper}>
               <IconSvg class={style.pig} name="pig" />
             </Center>

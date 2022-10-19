@@ -8,6 +8,7 @@ import MainLayout from "../../../components/main-layout";
 import { Tab, Tabs } from "../../../components/tabs";
 import { Time } from "../../../shared/timer";
 import style from './index.module.scss'
+import Overlay from "../../../components/overlay";
 
 export const ItemList = defineComponent({
 
@@ -67,7 +68,7 @@ export const ItemList = defineComponent({
     return () => <>
       <MainLayout>
         {{
-          icon: () => <IconSvg name="menu" class={style.menu_icon} onClick={goBack} />,
+          icon: () => <Overlay />,
           title: () => <>山竹记账</>,
           default: () => <>
             <div class={style.body_wrapper}>
