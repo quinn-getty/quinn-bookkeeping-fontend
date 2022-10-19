@@ -1,5 +1,5 @@
 import { defineComponent, ref, PropType } from "vue";
-import { timer } from "../../shared/timer";
+import { Time } from "../../shared/timer";
 import IconSvg from "../icon";
 import style from "./index.module.scss"
 import { Popup, DatetimePicker } from 'vant';
@@ -61,7 +61,7 @@ export const InputPad = defineComponent({
       <div class={style.dateAndAmount}>
         <span class={style.date} onClick={hideTimePopup}>
           <IconSvg name="date" class={style.date_icon} />
-          <span>{timer(refDate.value).format()}</span>
+          <span>{new Time(refDate.value).format()}</span>
         </span>
         <span class={style.amout}>{refAmount.value}</span>
       </div>
