@@ -1,5 +1,5 @@
 import { defineComponent, ref, PropType, reactive, toRaw } from "vue";
-import { RouterView } from "vue-router";
+import { RouterView, useRouter } from "vue-router";
 import Button from "../../../components/button";
 import EmojiSelect from "../../../components/emoji-select";
 import IconSvg from "../../../components/icon";
@@ -12,8 +12,9 @@ export const TagCreate = defineComponent({
   },
 
   setup(props, content) {
+    const router = useRouter()
     const goBack = () => {
-
+      router.replace('/item/create')
     }
     const formData = reactive({
       name: '',

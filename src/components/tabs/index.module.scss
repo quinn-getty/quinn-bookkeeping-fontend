@@ -1,5 +1,10 @@
 .tabs {
+  display: flex;
+  flex-direction: column;
+
   &_nav {
+    // flex-grow: 0;
+    // flex-shrink: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,5 +33,12 @@
         }
       }
     }
+  }
+
+  .tab {
+    // height: calc(100% - 48px);
+    // flex-grow: 1;
+    // flex-shrink: 1;
+    overflow: auto;
   }
 }

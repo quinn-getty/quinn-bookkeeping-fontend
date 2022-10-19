@@ -1,4 +1,6 @@
 .button_wrapper {
+  user-select: none;
+  -webkit-user-select: auto;
   display: grid;
   padding-bottom: constant(safe-area-inset-bottom);
   padding-bottom: env(safe-area-inset-bottom);
@@ -15,6 +17,8 @@
   border-top: 1px solid var(--button-border-color);
 
   >button {
+    user-select: none;
+    -webkit-user-select: auto;
     border: none;
     background: var(--number-button-bg);
 

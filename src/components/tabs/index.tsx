@@ -29,9 +29,7 @@ export const Tabs = defineComponent({
               {item.props?.name}
             </li>)}
         </ol>
-        <div>
-          {tabs.find(item => item.props?.name === props.selected)}
-        </div>
+        {tabs.find(item => item.props?.name === props.selected)}
       </div>
     }
   }
@@ -47,13 +45,10 @@ export const Tab = defineComponent({
     },
     title: {
       type: String as PropType<string>
-    }
+    },
   },
 
   setup(props, context) {
-    return () => <>
-      <div>{context.slots.default?.()}</div>
-      {/* tab */}
-    </>
+    return () => <div class={style.tab}>{context.slots.default?.()}</div>
   }
 })
