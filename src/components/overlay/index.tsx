@@ -1,4 +1,4 @@
-// import { SetupContext, ref, PropType } from "vue";
+import { Teleport } from "vue";
 import { RouterLink } from "vue-router";
 import IconSvg from "../icon";
 import style from "./index.module.scss"
@@ -70,7 +70,7 @@ export const Overlay = defineComponent({
       <IconSvg name="menu" onClick={iconClick} class={style.menu_icon} />
       {
         overlayVisible.value && (
-          <>
+          <Teleport to="#app">
             <div class={style.mask} onClick={iconClick}></div>
             <div class={style.overlay}>
               <section class={style.currentUser} onClick={onClickSignIn}>
@@ -100,7 +100,7 @@ export const Overlay = defineComponent({
                 </ul>
               </nav>
             </div>
-          </>
+          </Teleport>
         )
       }
     </>

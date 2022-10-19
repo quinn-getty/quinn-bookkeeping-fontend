@@ -1,17 +1,24 @@
 import { defineComponent, ref, PropType, reactive } from "vue";
 import { Picker, Popup, DatetimePicker } from 'vant'
 import { useRouter } from "vue-router";
-import ItemSummary from "../../../components/item-summary";
-import MainLayout from "../../../components/main-layout";
-import { Tab, Tabs } from "../../../components/tabs";
-import { Time } from "../../../shared/timer";
+import MainLayout from "../../components/main-layout";
+import { Tab, Tabs } from "../../components/tabs";
+import { Time } from "../../shared/timer";
 import style from './index.module.scss'
-import Overlay from "../../../components/overlay";
+import Overlay from "../../components/overlay";
 
-export const ItemList = defineComponent({
+
+export const ItemSummary = defineComponent({
 
   setup(props, content) {
-    const router = useRouter()
+    return () => <div>
+      ecart
+    </div>
+  }
+})
+
+export const StatisticsPage = defineComponent({
+  setup(props, content) {
     const selected = ref('自定义')
 
     const customTime = reactive({
@@ -57,26 +64,41 @@ export const ItemList = defineComponent({
       <MainLayout>
         {{
           icon: () => <Overlay />,
-          title: () => <>山竹记账</>,
+          title: () => <>图标统计</>,
           default: () => <>
             <div class={style.body_wrapper}>
               <Tabs v-model:selected={selected.value} class={style.tabs_wrapper}>
-                <Tab name="本月" class={style.tag_wrapper}>
+                <Tab name="本月" class={style.custom_body}>
+                  <div class={[style.custom_title]}>
+                    <div />
+                    <div class={style.select_type} onClick={hideTypePopupVisible}>
+                      {type.value}
+                    </div>
+                  </div>
                   <ItemSummary
-                    startDate={timeList[0].start.format()}
-                    endDate={timeList[0].end.format()}
+                    class={style.custom_content}
                   />
                 </Tab>
-                <Tab name="上月" class={style.tag_wrapper}>
+                <Tab name="上月" class={style.custom_body}>
+                  <div class={style.custom_title}>
+                    <div />
+                    <div class={style.select_type} onClick={hideTypePopupVisible}>
+                      {type.value}
+                    </div>
+                  </div>
                   <ItemSummary
-                    startDate={timeList[1].start.format()}
-                    endDate={timeList[1].end.format()}
+                    class={style.custom_content}
                   />
                 </Tab>
-                <Tab name="今年" class={style.tag_wrapper}>
+                <Tab name="今年" class={style.custom_body}>
+                  <div class={style.custom_title}>
+                    <div />
+                    <div class={style.select_type} onClick={hideTypePopupVisible}>
+                      {type.value}
+                    </div>
+                  </div>
                   <ItemSummary
-                    startDate={timeList[2].start.format()}
-                    endDate={timeList[2].end.format()}
+                    class={style.custom_content}
                   />
                 </Tab>
                 <Tab name="自定义" class={style.custom_body}>
@@ -94,8 +116,6 @@ export const ItemList = defineComponent({
                   </div>
                   <ItemSummary
                     class={style.custom_content}
-                    startDate={customTime.start}
-                    endDate={customTime.end}
                   />
                 </Tab>
               </Tabs>
@@ -120,4 +140,4 @@ export const ItemList = defineComponent({
     </>
   }
 })
-export default ItemList 
+export default StatisticsPage 
