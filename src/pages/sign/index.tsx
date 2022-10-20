@@ -1,4 +1,5 @@
 import { defineComponent, PropType, reactive } from 'vue';
+import { routerKey, useRouter } from 'vue-router';
 import Button from '../../components/button';
 import { Form, FormItem } from '../../components/form';
 import IconSvg from '../../components/icon';
@@ -7,6 +8,7 @@ import validata from '../../shared/validata';
 import s from './index.module.scss';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
+    const router = useRouter()
     const formData = reactive({
       email: '',
       code: ''
@@ -26,11 +28,14 @@ export const SignInPage = defineComponent({
         { key: 'code', required: true, message: '必填' },
       ]))
     }
+    const goBack = () => {
+      router.go(-1)
+    }
     return () => (
       <MainLayout>{
         {
           title: () => '登录',
-          icon: () => <IconSvg name="left" />,
+          icon: () => <IconSvg name="left" onClick={goBack} />,
           default: () => (
             <div class={s.wrapper}>
               <div class={s.logo}>
