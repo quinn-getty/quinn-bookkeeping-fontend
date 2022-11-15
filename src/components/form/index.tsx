@@ -1,3 +1,4 @@
+import { AxiosResponse } from 'axios';
 import { DatetimePicker, Popup } from 'vant';
 import { computed, defineComponent, PropType, ref, VNode } from 'vue';
 import { Time } from '../../shared/timer';
@@ -39,7 +40,8 @@ export const FormItem = defineComponent({
     countFrom: {
       type: Number,
       default: 60
-    }
+    },
+    triggerCountdown: Function as PropType<()=>Promise<AxiosResponse<any, any>>>
   },
   emits: ['update:modelValue'],
   setup: (props, context) => {
@@ -48,15 +50,16 @@ export const FormItem = defineComponent({
     const count = ref<number>(props.countFrom)
     const isCounting = computed(() => !!timer.value)
     const onClickSendValidationCode = ()=>{
-      props.onClick?.()
-      timer.value = setInterval(() => {
-        count.value -= 1
-        if(count.value === 0){
-          clearInterval(timer.value)
-          timer.value = undefined
-          count.value = props.countFrom
-        }
-      },1000)
+      props.triggerCountdown?.().then(()=>{
+        timer.value = setInterval(() => {
+          count.value -= 1
+          if(count.value === 0){
+            clearInterval(timer.value)
+            timer.value = undefined
+            count.value = props.countFrom
+          }
+        },1000)
+      }).catch(()=>{})
     }
 
     const content = computed(() => {

@@ -5,6 +5,7 @@ import { Form, FormItem } from '../../components/form';
 import IconSvg from '../../components/icon';
 import MainLayout from '../../components/main-layout';
 import validata from '../../shared/validata';
+import axios from 'axios'
 import s from './index.module.scss';
 export const SignInPage = defineComponent({
   setup: (props, context) => {
@@ -36,6 +37,10 @@ export const SignInPage = defineComponent({
       // const response = await axios.post('/api/v1/validation_codes', { email: formData.email })
       // console.log(response)
     }
+    const triggerCountdown = async () => {
+      // return axios.post('/api/v1/validation_codes', { email: formData.email })
+      return Promise.resolve()
+    }
 
     return () => (
       <MainLayout>{
@@ -55,7 +60,8 @@ export const SignInPage = defineComponent({
                 <FormItem label="验证码" type="validationCode"
                   placeholder='请输入六位数字'
                   countFrom={60}
-                  onClick={onClickSendValidationCode}
+                  // onClick={onClickSendValidationCode}
+                  triggerCountdown={triggerCountdown}
                   v-model={formData.code} error={errors.code?.[0]} />
                   
                 <FormItem style={{ paddingTop: '96px' }}>
