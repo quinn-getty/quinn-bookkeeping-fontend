@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { number } from 'echarts';
 import { DatetimePicker, Popup } from 'vant';
 import { computed, defineComponent, PropType, ref, VNode } from 'vue';
 import { Time } from '../../shared/timer';
@@ -41,7 +42,9 @@ export const FormItem = defineComponent({
       type: Number,
       default: 60
     },
-    triggerCountdown: Function as PropType<()=>Promise<AxiosResponse<any, any>>>
+    inputMaxLength: String,
+    disabled: Boolean,
+    triggerCountdown: Function as PropType<()=>Promise<any>>
   },
   emits: ['update:modelValue'],
   setup: (props, context) => {
@@ -77,9 +80,13 @@ export const FormItem = defineComponent({
             class={[s.formItem, s.emojiList, s.error]} />
         case 'validationCode':
           return <>
-            <input class={[s.formItem, s.input, s.validationCodeInput]}
-              placeholder={props.placeholder} />
-            <Button disabled={isCounting.value} onClick={onClickSendValidationCode}  class={[s.formItem, s.button, s.validationCodeButton]}>
+            <input 
+              class={[s.formItem, s.input]}
+              placeholder={props.placeholder} 
+              onInput={(e: any) => context.emit('update:modelValue', e.target.value)}
+              maxlength={props.inputMaxLength}
+            />
+            <Button disabled={isCounting.value || props.disabled} onClick={onClickSendValidationCode}  class={[s.formItem, s.button, s.validationCodeButton]}>
               {isCounting.value ? `${count.value}秒后可重新发送` : '发送验证码'}
             </Button>
           </>

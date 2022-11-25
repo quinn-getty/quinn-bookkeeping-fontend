@@ -9,7 +9,10 @@ import svgstore from './src/vite_plugins/svgstore'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    port: 9987
+    port: 9987,
+    proxy: {
+      '/api/v1': 'http://localhost:3000'
+    }
   },
   plugins: [
     vue(),

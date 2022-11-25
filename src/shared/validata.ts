@@ -51,4 +51,14 @@ export const validata = <T>(formData: T, rules: RulesType<T>) => {
   })
   return errors
 }
-export default validata
+
+export const hasError = (errors: Record<string, string[]>) => {
+  for (let key in errors) {
+    if(errors[key].length > 0 ){
+      return true
+    }
+  }
+  return false
+}
+
+// export default validata

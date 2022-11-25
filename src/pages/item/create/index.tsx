@@ -1,5 +1,5 @@
 import { defineComponent, ref, PropType } from "vue";
-import { useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import IconSvg from "../../../components/icon";
 import InputPad from "../../../components/input-pad";
 import MainLayout from "../../../components/main-layout";
@@ -10,9 +10,14 @@ export const ItemCreate = defineComponent({
 
   setup(props, content) {
     const router = useRouter()
-    const selected = ref('支出')
+    const route = useRoute()
+    const type = route.query.type || '支出'
+    
+    const selected = ref(type)
     const changeActiveTab = (name: string) => {
-      selected.value = name
+      // selected.value = name
+      router.replace(`/item/create?type=${type}`)
+
     }
     const goBack = () => {
       router.go(-1)

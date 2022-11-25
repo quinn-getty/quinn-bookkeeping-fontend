@@ -5,7 +5,6 @@ import { EmojiSelect } from "../../../components/emoji-select";
 import IconSvg from "../../../components/icon";
 import MainLayout from "../../../components/main-layout";
 import { TagForm } from "../../../components/tag/tag-form";
-import validata, { RulesType } from "../../../shared/validata";
 import style from "./index.module.scss"
 
 export const TagCreate = defineComponent({
