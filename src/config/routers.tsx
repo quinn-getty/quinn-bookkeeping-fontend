@@ -15,6 +15,7 @@ import TagCreate from "../pages/tag/create"
 import TagEdit from "../pages/tag/edit"
 import { SignInPage } from "../pages/sign"
 import { StatisticsPage } from "../pages/statistics"
+import http from "../shared/axios"
 
 const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/welcome' },
@@ -38,6 +39,12 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/item',
     component: ItemPage,
+    beforeEnter: async (to, from , next)=>{
+      await http.get('/me').catch(()=>{
+        next(`/sign?redirect_to=${to.path}`)
+      })
+      next()
+    },
     children: [
       { path: '', redirect: '/item/list' },
       { path: 'list', component: ItemList },

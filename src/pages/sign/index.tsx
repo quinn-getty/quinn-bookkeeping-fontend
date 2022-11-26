@@ -38,8 +38,8 @@ export const SignInPage = defineComponent({
       }
       const response = await http.post<{ jwt: string }>('/session', formData)
       localStorage.setItem('jwt', response.data.jwt)
-      const returnTo = sessionStorage.getItem('return_to') || '/'
-      router.push(returnTo)
+      const redirectTo = route.query.redirect_to?.toString() || '/'
+      router.push(redirectTo)
       
     }
     const goBack = () => {
