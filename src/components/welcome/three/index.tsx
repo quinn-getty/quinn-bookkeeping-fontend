@@ -3,12 +3,13 @@ import { RouterLink } from 'vue-router';
 import WelcomeLayout from '../layout';
 import style from "../index.module.scss"
 import IconSvg from '../../icon';
+import JumpButton from '../jump-button';
 
 export const ThreeFooter = () => {
   return <>
     <RouterLink to='/welcome/2'>上一步</RouterLink>
     <RouterLink to='/welcome/4'>下一页</RouterLink>
-    <RouterLink to='/start'>跳过</RouterLink>
+    <JumpButton />
   </>
 }
 ThreeFooter.displayName = 'ThreeFooter'

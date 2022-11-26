@@ -24,7 +24,7 @@ const routes: RouteRecordRaw[] = [
     path: '/welcome',
     component: Welcome,
     beforeEnter: (to, from, next)=>{
-      const jump = localStorage.getItem('yes')
+      const jump = localStorage.getItem('jump') === 'yes'
       jump ? next('/start') : next()
     },
     children: [
