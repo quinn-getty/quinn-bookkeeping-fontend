@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from "vue-router"
+import { NavigationGuardWithThis, RouteRecordRaw } from "vue-router"
 import { Bar } from "../pages/Bar"
 import Welcome from "../pages/welcome"
 import { TwoFooter, TwoMain } from "../components/welcome/two"
@@ -16,6 +16,13 @@ import TagEdit from "../pages/tag/edit"
 import { SignInPage } from "../pages/sign"
 import { StatisticsPage } from "../pages/statistics"
 import http from "../shared/axios"
+
+const authenticatio: NavigationGuardWithThis<undefined> =  async (to, from , next)=>{
+  await http.get('/me').catch(()=>{
+    next(`/sign?redirect_to=${to.path}`)
+  })
+  next()
+}
 
 const routes: RouteRecordRaw[] = [
   { path: '/', redirect: '/welcome' },
@@ -39,12 +46,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/item',
     component: ItemPage,
-    beforeEnter: async (to, from , next)=>{
-      await http.get('/me').catch(()=>{
-        next(`/sign?redirect_to=${to.path}`)
-      })
-      next()
-    },
+    beforeEnter: authenticatio,
     children: [
       { path: '', redirect: '/item/list' },
       { path: 'list', component: ItemList },
@@ -54,6 +56,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/tag',
     component: TagsPage,
+    beforeEnter: authenticatio,
     children: [
       { path: 'create', component: TagCreate },
       { path: ':id', component: TagEdit }
@@ -63,7 +66,9 @@ const routes: RouteRecordRaw[] = [
     path: '/sign', component: SignInPage
   },
   {
-    path: '/statistics', component: StatisticsPage
+    path: '/statistics', 
+    component: StatisticsPage,
+    beforeEnter: authenticatio,
   }
 ]
 

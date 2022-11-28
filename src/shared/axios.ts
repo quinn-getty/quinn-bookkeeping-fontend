@@ -9,7 +9,7 @@ class Http {
       baseURL,
     })
   }
-  get<T = unknown>(url: string, query?: Record<string,string>, config?: Omit<AxiosRequestConfig, 'params' | 'url' | 'method' >){
+  get<T = unknown>(url: string, query?: Record<string,string|number>, config?: Omit<AxiosRequestConfig, 'params' | 'url' | 'method' >){
     return this.instance.request<T>({ url, method: 'GET', params: query, ...config })
   }
   post<T = unknown>(url: string, data?: Record<string,JSONValue>, config?: Omit<AxiosRequestConfig, 'params' | 'url' | 'method' >){
