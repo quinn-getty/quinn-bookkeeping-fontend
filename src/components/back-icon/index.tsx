@@ -1,5 +1,5 @@
 import { defineComponent, ref, PropType } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import IconSvg from '../icon'
 // import style from "./index.module.scss"
 
@@ -8,9 +8,15 @@ const BackIcon = defineComponent({
 
   setup(props, content) {
     const router = useRouter()
+    const route = useRoute()
 
     const goBack = () => {
-      router.go(-1)
+      const { redirect_to } = route.query
+      if (redirect_to) {
+        router.push(redirect_to.toString())
+      } else {
+        router.back()
+      }
     }
     return () => <IconSvg name="left" onClick={goBack} />
   },
