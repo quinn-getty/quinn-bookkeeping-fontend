@@ -1,12 +1,13 @@
-import { defineComponent, ref, PropType } from "vue";
-import { RouterView } from "vue-router";
+import { defineComponent, ref, PropType } from 'vue'
+import { RouterView } from 'vue-router'
 
 export const ItemPage = defineComponent({
-
   setup(props, content) {
-    return () => <>
-      <RouterView />
-    </>
-  }
+    return () => (
+      <>
+        <RouterView />
+      </>
+    )
+  },
 })
-export default ItemPage 
+export default ItemPage

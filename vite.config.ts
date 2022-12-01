@@ -11,7 +11,7 @@ export default defineConfig({
   server: {
     port: 9987,
     proxy: {
-      '/api/v1': 'http://localhost:3000'
+      '/api/v1': 'http://localhost:9988'
     }
   },
   plugins: [
