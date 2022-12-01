@@ -1,5 +1,6 @@
 import { defineComponent, PropType, reactive, ref } from 'vue'
 import { routerKey, useRoute, useRouter } from 'vue-router'
+import BackIcon from '../../components/back-icon'
 import Button from '../../components/button'
 import { Form, FormItem } from '../../components/form'
 import IconSvg from '../../components/icon'
@@ -45,9 +46,6 @@ export const SignInPage = defineComponent({
       const redirectTo = route.query.redirect_to?.toString() || '/'
       router.push(redirectTo)
     }
-    const goBack = () => {
-      router.go(-1)
-    }
     const onError = (error: any) => {
       if (error.response.status === 422) {
         Object.assign(errors, error.response.data.errors)
@@ -74,7 +72,7 @@ export const SignInPage = defineComponent({
       <MainLayout>
         {{
           title: () => '登录',
-          icon: () => <IconSvg name="left" onClick={goBack} />,
+          icon: () => <BackIcon />,
           default: () => (
             <div class={s.wrapper}>
               <div class={s.logo}>

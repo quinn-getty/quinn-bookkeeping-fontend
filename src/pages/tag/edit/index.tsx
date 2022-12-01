@@ -1,5 +1,6 @@
 import { defineComponent, ref, PropType, reactive, toRaw } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
+import BackIcon from '../../../components/back-icon'
 import Button from '../../../components/button'
 import EmojiSelect from '../../../components/emoji-select'
 import IconSvg from '../../../components/icon'
@@ -12,10 +13,6 @@ export const TagEdit = defineComponent({
   props: {},
 
   setup(props, content) {
-    const router = useRouter()
-    const goBack = () => {
-      router.replace('/item/create')
-    }
     const formData = reactive({
       name: 'oks',
       sign: '👌',
@@ -37,9 +34,7 @@ export const TagEdit = defineComponent({
       <>
         <MainLayout>
           {{
-            icon: () => (
-              <IconSvg name="left" class={style.menu_icon} onClick={goBack} />
-            ),
+            icon: () => <BackIcon class={style.menu_icon} />,
             title: () => '标签详情',
             default: () => (
               <>

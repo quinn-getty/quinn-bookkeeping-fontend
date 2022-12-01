@@ -1,5 +1,6 @@
 import { defineComponent, ref, PropType, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import BackIcon from '../../../components/back-icon'
 import IconSvg from '../../../components/icon'
 import InputPad from '../../../components/input-pad'
 import MainLayout from '../../../components/main-layout'
@@ -15,9 +16,6 @@ export const ItemCreate = defineComponent({
     const type = '支出'
 
     const selected = ref(type)
-    const goBack = () => {
-      router.go(-1)
-    }
     const expenses = useTags('expenses')
     const income = useTags('income')
     console.log(expenses)
@@ -30,9 +28,7 @@ export const ItemCreate = defineComponent({
       <>
         <MainLayout>
           {{
-            icon: () => (
-              <IconSvg name="left" class={style.menu_icon} onClick={goBack} />
-            ),
+            icon: () => <BackIcon class={style.menu_icon} />,
             title: () => <>记一笔</>,
             default: () => (
               <>

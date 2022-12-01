@@ -1,5 +1,6 @@
 import { defineComponent, ref, PropType, reactive, toRaw } from 'vue'
 import { RouterView, useRouter } from 'vue-router'
+import BackIcon from '../../../components/back-icon'
 import Button from '../../../components/button'
 import { EmojiSelect } from '../../../components/emoji-select'
 import IconSvg from '../../../components/icon'
@@ -11,17 +12,11 @@ export const TagCreate = defineComponent({
   props: {},
 
   setup(props, content) {
-    const router = useRouter()
-    const goBack = () => {
-      router.replace('/item/create')
-    }
     return () => (
       <>
         <MainLayout>
           {{
-            icon: () => (
-              <IconSvg name="left" class={style.menu_icon} onClick={goBack} />
-            ),
+            icon: () => <BackIcon class={style.menu_icon} />,
             title: () => '新建标签',
             default: () => (
               <>
