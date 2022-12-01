@@ -1,16 +1,16 @@
-import { AxiosResponse } from 'axios';
-import { number } from 'echarts';
-import { DatetimePicker, Popup } from 'vant';
-import { computed, defineComponent, PropType, ref, VNode } from 'vue';
-import { Time } from '../../shared/timer';
-import Button from '../button';
-import EmojiSelect from '../emoji-select';
-import s from './index.module.scss';
+import { AxiosResponse } from 'axios'
+import { number } from 'echarts'
+import { DatetimePicker, Popup } from 'vant'
+import { computed, defineComponent, PropType, ref, VNode } from 'vue'
+import { Time } from '../../shared/timer'
+import Button from '../button'
+import EmojiSelect from '../emoji-select'
+import s from './index.module.scss'
 export const Form = defineComponent({
   props: {
     onSubmit: {
       type: Function as PropType<(e: Event) => void>,
-    }
+    },
   },
   setup: (props, context) => {
     return () => (
@@ -18,33 +18,35 @@ export const Form = defineComponent({
         {context.slots.default?.()}
       </form>
     )
-  }
+  },
 })
 
 export const FormItem = defineComponent({
   props: {
     label: {
-      type: String
+      type: String,
     },
     modelValue: {
-      type: [String, Number]
+      type: [String, Number],
     },
     type: {
-      type: String as PropType<'text' | 'emojiSelect' | 'date' | 'validationCode' | 'select'>,
+      type: String as PropType<
+        'text' | 'emojiSelect' | 'date' | 'validationCode' | 'select'
+      >,
     },
     error: {
-      type: String
+      type: String,
     },
     placeholder: String,
-    options: Array as PropType<Array<{ value: string, text: string }>>,
+    options: Array as PropType<Array<{ value: string; text: string }>>,
     onClick: Function as PropType<() => void>,
     countFrom: {
       type: Number,
-      default: 60
+      default: 60,
     },
     inputMaxLength: String,
     disabled: Boolean,
-    triggerCountdown: Function as PropType<()=>Promise<any>>
+    triggerCountdown: Function as PropType<() => Promise<any>>,
   },
   emits: ['update:modelValue'],
   setup: (props, context) => {
@@ -52,83 +54,123 @@ export const FormItem = defineComponent({
     const timer = ref<number>()
     const count = ref<number>(props.countFrom)
     const isCounting = computed(() => !!timer.value)
-    const onClickSendValidationCode = ()=>{
-      props.triggerCountdown?.().then(()=>{
-        timer.value = setInterval(() => {
-          count.value -= 1
-          if(count.value === 0){
-            clearInterval(timer.value)
-            timer.value = undefined
-            count.value = props.countFrom
-          }
-        },1000)
-      }).catch(()=>{})
+    const onClickSendValidationCode = () => {
+      props
+        .triggerCountdown?.()
+        .then(() => {
+          timer.value = setInterval(() => {
+            count.value -= 1
+            if (count.value === 0) {
+              clearInterval(timer.value)
+              timer.value = undefined
+              count.value = props.countFrom
+            }
+          }, 1000)
+        })
+        .catch(() => {})
     }
 
     const content = computed(() => {
       switch (props.type) {
         case 'text':
-          return <input
-            value={props.modelValue}
-            placeholder={props.placeholder}
-            onInput={(e: any) => context.emit('update:modelValue', e.target.value)}
-            class={[s.formItem, s.input]} />
-        case 'emojiSelect':
-          return <EmojiSelect
-            modelValue={props.modelValue?.toString()}
-            onUpdateModelValue={value => context.emit('update:modelValue', value)}
-            class={[s.formItem, s.emojiList, s.error]} />
-        case 'validationCode':
-          return <>
-            <input 
-              class={[s.formItem, s.input]}
-              placeholder={props.placeholder} 
-              onInput={(e: any) => context.emit('update:modelValue', e.target.value)}
-              maxlength={props.inputMaxLength}
-            />
-            <Button disabled={isCounting.value || props.disabled} onClick={onClickSendValidationCode}  class={[s.formItem, s.button, s.validationCodeButton]}>
-              {isCounting.value ? `${count.value}秒后可重新发送` : '发送验证码'}
-            </Button>
-          </>
-        case 'select':
-          return <select class={[s.formItem, s.select]} value={props.modelValue}
-            onChange={(e: any) => { context.emit('update:modelValue', e.target.value) }}>
-            {props.options?.map(option =>
-              <option value={option.value}>{option.text}</option>
-            )}
-          </select>
-        case 'date':
-          return <>
-            <input readonly={true} value={props.modelValue}
+          return (
+            <input
+              value={props.modelValue}
               placeholder={props.placeholder}
-              onClick={() => { refDateVisible.value = true }}
-              class={[s.formItem, s.input]} />
-            <Popup position='bottom' v-model:show={refDateVisible.value}>
-              <DatetimePicker value={props.modelValue} type="date" title="选择年月日"
-                onConfirm={(date: Date) => {
-                  context.emit('update:modelValue', new Time(date).format())
-                  refDateVisible.value = false
+              onInput={(e: any) =>
+                context.emit('update:modelValue', e.target.value)
+              }
+              class={[s.formItem, s.input]}
+            />
+          )
+        case 'emojiSelect':
+          return (
+            <EmojiSelect
+              modelValue={props.modelValue?.toString()}
+              onUpdateModelValue={(value) =>
+                context.emit('update:modelValue', value)
+              }
+              class={[s.formItem, s.emojiList, s.error]}
+            />
+          )
+        case 'validationCode':
+          return (
+            <>
+              <input
+                class={[s.formItem, s.input]}
+                placeholder={props.placeholder}
+                onInput={(e: any) =>
+                  context.emit('update:modelValue', e.target.value)
+                }
+                maxlength={props.inputMaxLength}
+              />
+              <Button
+                disabled={isCounting.value || props.disabled}
+                onClick={onClickSendValidationCode}
+                class={[s.formItem, s.button, s.validationCodeButton]}
+              >
+                {isCounting.value
+                  ? `${count.value}秒后可重新发送`
+                  : '发送验证码'}
+              </Button>
+            </>
+          )
+        case 'select':
+          return (
+            <select
+              class={[s.formItem, s.select]}
+              value={props.modelValue}
+              onChange={(e: any) => {
+                context.emit('update:modelValue', e.target.value)
+              }}
+            >
+              {props.options?.map((option) => (
+                <option value={option.value}>{option.text}</option>
+              ))}
+            </select>
+          )
+        case 'date':
+          return (
+            <>
+              <input
+                readonly={true}
+                value={props.modelValue}
+                placeholder={props.placeholder}
+                onClick={() => {
+                  refDateVisible.value = true
                 }}
-                onCancel={() => refDateVisible.value = false} />
-            </Popup></>
+                class={[s.formItem, s.input]}
+              />
+              <Popup position="bottom" v-model:show={refDateVisible.value}>
+                <DatetimePicker
+                  value={props.modelValue}
+                  type="date"
+                  title="选择年月日"
+                  onConfirm={(date: Date) => {
+                    context.emit('update:modelValue', new Time(date).format())
+                    refDateVisible.value = false
+                  }}
+                  onCancel={() => (refDateVisible.value = false)}
+                />
+              </Popup>
+            </>
+          )
         case undefined:
           return context.slots.default?.()
       }
     })
     return () => {
-      return <div class={s.formRow}>
-        <label class={s.formLabel}>
-          {props.label &&
-            <span class={s.formItem_name}>{props.label}</span>
-          }
-          <div class={s.formItem_value}>
-            {content.value}
-          </div>
-          <div class={s.formItem_errorHint}>
-            <span>{props.error ?? '　'}</span>
-          </div>
-        </label>
-      </div>
+      return (
+        <div class={s.formRow}>
+          <label class={s.formLabel}>
+            {props.label && <span class={s.formItem_name}>{props.label}</span>}
+            <div class={s.formItem_value}>{content.value}</div>
+            <div class={s.formItem_errorHint}>
+              <span>{props.error ?? '　'}</span>
+            </div>
+          </label>
+        </div>
+      )
     }
-  }
+  },
 })

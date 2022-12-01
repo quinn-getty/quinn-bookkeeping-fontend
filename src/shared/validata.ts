@@ -6,11 +6,11 @@ type FNType = string | number | null | undefined | FormDataType
 
 export type RulesType<T> = RuleType<T>[]
 type RuleType<T> = {
-  key: keyof T;
-  message?: string;
-  required?: true;
-  regexp?: RegExp;
-  fn?: <F>(_: F) => { status: boolean, message?: string }
+  key: keyof T
+  message?: string
+  required?: true
+  regexp?: RegExp
+  fn?: <F>(_: F) => { status: boolean; message?: string }
 }
 
 type ErrorsType<T> = {
@@ -18,18 +18,18 @@ type ErrorsType<T> = {
 }
 
 /**
- *      
- * @param formData 
- * 
+ *
+ * @param formData
+ *
  * @param rules
  *  required > pettern > fn
  */
 export const validata = <T>(formData: T, rules: RulesType<T>) => {
   const errors: ErrorsType<T> = {}
-  rules.forEach(item => {
+  rules.forEach((item) => {
     const { key } = item
     const value = formData[key]
-    let isError = false // 
+    let isError = false //
     let message = item?.message || ''
 
     if (item?.required) {
@@ -54,7 +54,7 @@ export const validata = <T>(formData: T, rules: RulesType<T>) => {
 
 export const hasError = (errors: Record<string, string[]>) => {
   for (let key in errors) {
-    if(errors[key].length > 0 ){
+    if (errors[key].length > 0) {
       return true
     }
   }

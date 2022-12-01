@@ -1,16 +1,15 @@
-import { defineComponent, ref, PropType, reactive, toRaw } from "vue";
-import { RouterView, useRouter } from "vue-router";
-import Button from "../../../components/button";
-import EmojiSelect from "../../../components/emoji-select";
-import IconSvg from "../../../components/icon";
-import MainLayout from "../../../components/main-layout";
-import { TagForm } from "../../../components/tag/tag-form";
-import { validata, RulesType } from "../../../shared/validata";
-import style from "./index.module.scss"
+import { defineComponent, ref, PropType, reactive, toRaw } from 'vue'
+import { RouterView, useRouter } from 'vue-router'
+import Button from '../../../components/button'
+import EmojiSelect from '../../../components/emoji-select'
+import IconSvg from '../../../components/icon'
+import MainLayout from '../../../components/main-layout'
+import { TagForm } from '../../../components/tag/tag-form'
+import { validata, RulesType } from '../../../shared/validata'
+import style from './index.module.scss'
 
 export const TagEdit = defineComponent({
-  props: {
-  },
+  props: {},
 
   setup(props, content) {
     const router = useRouter()
@@ -19,12 +18,12 @@ export const TagEdit = defineComponent({
     }
     const formData = reactive({
       name: 'oks',
-      sign: "👌",
+      sign: '👌',
     })
     const refError = ref<{ [_ in keyof typeof formData]?: string[] }>({})
     const onSubmit = (e: Event) => {
       e.preventDefault()
-      console.log(formData);
+      console.log(formData)
       const data = toRaw(formData)
       const rules: RulesType<typeof data> = [
         { key: 'name', required: true, message: '必填' },
@@ -34,22 +33,28 @@ export const TagEdit = defineComponent({
       const errors = validata(data, rules)
       refError.value = errors
     }
-    return () => <>
-      <MainLayout>
-        {{
-          icon: () => <IconSvg name="left" class={style.menu_icon} onClick={goBack} />,
-          title: () => '标签详情',
-          default: () => <>
-            <TagForm />
-            {/* <div class={s.actions}>
+    return () => (
+      <>
+        <MainLayout>
+          {{
+            icon: () => (
+              <IconSvg name="left" class={style.menu_icon} onClick={goBack} />
+            ),
+            title: () => '标签详情',
+            default: () => (
+              <>
+                <TagForm />
+                {/* <div class={s.actions}>
               <Button level='danger' class={s.removeTags} onClick={() => { }}>删除标签</Button>
               <Button level='danger' class={s.removeTagsAndItems} onClick={() => { }}>删除标签和记账</Button>
             </div> */}
-          </>
-        }}
-      </MainLayout>
-    </>
-  }
+              </>
+            ),
+          }}
+        </MainLayout>
+      </>
+    )
+  },
 })
 
-export default TagEdit 
+export default TagEdit

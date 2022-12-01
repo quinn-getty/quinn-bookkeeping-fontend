@@ -1,4 +1,4 @@
-import { createWebHashHistory } from "vue-router"
+import { createWebHashHistory } from 'vue-router'
 
 const history = createWebHashHistory()
 

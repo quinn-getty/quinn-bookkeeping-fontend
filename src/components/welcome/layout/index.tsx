@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { defineComponent } from 'vue'
 import style from '../index.module.scss'
 
 export const WelcomeLayout = defineComponent({
@@ -7,12 +7,13 @@ export const WelcomeLayout = defineComponent({
     return () => (
       <div class={style.wrapper}>
         <div class={style.card}>
-          {icon?.()}<br />
+          {icon?.()}
+          <br />
           {text?.()}
         </div>
       </div>
     )
-  }
+  },
 })
 
 WelcomeLayout.displayName = 'WelcomeLayout'

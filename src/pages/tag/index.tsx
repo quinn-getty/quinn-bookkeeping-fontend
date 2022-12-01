@@ -1,5 +1,5 @@
-import { defineComponent, ref, PropType } from "vue";
-import { RouterView } from "vue-router";
+import { defineComponent, ref, PropType } from 'vue'
+import { RouterView } from 'vue-router'
 // import style from "./index.module.scss"
 
 export const TagsPage = defineComponent({
@@ -10,9 +10,11 @@ export const TagsPage = defineComponent({
   },
 
   setup(props, content) {
-    return () => <>
-      <RouterView />
-    </>
-  }
+    return () => (
+      <>
+        <RouterView />
+      </>
+    )
+  },
 })
-export default TagsPage 
+export default TagsPage

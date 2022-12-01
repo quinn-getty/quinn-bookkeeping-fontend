@@ -1,4 +1,4 @@
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
 export const JumpButton = () => {
   const router = useRouter()

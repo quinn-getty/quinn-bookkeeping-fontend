@@ -1,9 +1,14 @@
-import { defineComponent, ref, Transition, VNode, watchEffect } from 'vue';
-import { RouteLocationNormalizedLoaded, RouterView, useRoute, useRouter } from 'vue-router';
+import { defineComponent, ref, Transition, VNode, watchEffect } from 'vue'
+import {
+  RouteLocationNormalizedLoaded,
+  RouterView,
+  useRoute,
+  useRouter,
+} from 'vue-router'
 import style from './index.module.scss'
-import IconSvg from '../../components/icon';
-import useSwipe from '../../hooks/useSwipe';
-import throttle from '../../shared/throttle';
+import IconSvg from '../../components/icon'
+import useSwipe from '../../hooks/useSwipe'
+import throttle from '../../shared/throttle'
 
 export const Welcome = defineComponent({
   setup: (props, context) => {
@@ -23,20 +28,34 @@ export const Welcome = defineComponent({
     })
 
     const next = throttle(() => {
-      console.log(route.name);
+      console.log(route.name)
       switch (route.name) {
-        case 'Welcome1': router.push({ name: 'Welcome2' }); break;
-        case 'Welcome2': router.push({ name: 'Welcome3' }); break;
-        case 'Welcome3': router.push({ name: 'Welcome4' }); break;
-        case 'Welcome4': router.push('/start'); break;
+        case 'Welcome1':
+          router.push({ name: 'Welcome2' })
+          break
+        case 'Welcome2':
+          router.push({ name: 'Welcome3' })
+          break
+        case 'Welcome3':
+          router.push({ name: 'Welcome4' })
+          break
+        case 'Welcome4':
+          router.push('/start')
+          break
       }
     }, 500)
 
     const pre = throttle(() => {
       switch (route.name) {
-        case 'Welcome2': router.push({ name: 'Welcome1' }); break;
-        case 'Welcome3': router.push({ name: 'Welcome2' }); break;
-        case 'Welcome4': router.push({ name: 'Welcome3' }); break;
+        case 'Welcome2':
+          router.push({ name: 'Welcome1' })
+          break
+        case 'Welcome3':
+          router.push({ name: 'Welcome2' })
+          break
+        case 'Welcome4':
+          router.push({ name: 'Welcome3' })
+          break
       }
     }, 500)
 
@@ -53,12 +72,18 @@ export const Welcome = defineComponent({
     return () => (
       <div class={style.wrapper}>
         <header>
-          <IconSvg name='mangosteen' />
+          <IconSvg name="mangosteen" />
           <h1>山竹记账</h1>
         </header>
         <main class={style.main} ref={main}>
           <RouterView name="main">
-            {({ Component: X, route: R }: { Component: VNode, route: RouteLocationNormalizedLoaded }) => {
+            {({
+              Component: X,
+              route: R,
+            }: {
+              Component: VNode
+              route: RouteLocationNormalizedLoaded
+            }) => {
               return (
                 <Transition
                   enterFromClass={style[`slide_fade_enter_${routerType.value}`]}
@@ -69,8 +94,7 @@ export const Welcome = defineComponent({
                   {X}
                 </Transition>
               )
-            }
-            }
+            }}
           </RouterView>
         </main>
         <footer>
@@ -78,7 +102,7 @@ export const Welcome = defineComponent({
         </footer>
       </div>
     )
-  }
+  },
 })
 
 export default Welcome

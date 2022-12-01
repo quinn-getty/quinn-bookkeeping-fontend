@@ -1,6 +1,6 @@
 .menu_icon {
   width: 28px;
-  height: 28px
+  height: 28px;
 }
 
 .body-wrapper {
@@ -54,19 +54,17 @@
         }
       }
     }
-    .more{
+    .more {
       width: 100%;
       padding: 12px;
       display: flex;
       justify-content: center;
-      .button{
-        padding: 6px ;
+      .button {
+        padding: 6px;
         border-radius: 4px;
         background: var(--tag-bg);
         border: 1px solid var(--tag-bg);
       }
     }
-
   }
-
 }

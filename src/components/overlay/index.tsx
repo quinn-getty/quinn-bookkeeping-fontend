@@ -1,13 +1,12 @@
-import { Teleport } from "vue";
-import { routerKey, RouterLink, useRouter } from "vue-router";
-import IconSvg from "../icon";
-import style from "./index.module.scss"
+import { Teleport } from 'vue'
+import { routerKey, RouterLink, useRouter } from 'vue-router'
+import IconSvg from '../icon'
+import style from './index.module.scss'
 
-import { defineComponent, ref, PropType } from "vue";
+import { defineComponent, ref, PropType } from 'vue'
 // import style from "./index.module.scss"
 
 export const Overlay = defineComponent({
-
   setup(props, content) {
     const router = useRouter()
     const overlayVisible = ref(false)
@@ -17,10 +16,10 @@ export const Overlay = defineComponent({
     const onClickSignIn = () => {
       router.push('/sign')
     }
-    return () => <>
-      <IconSvg name="menu" onClick={iconClick} class={style.menu_icon} />
-      {
-        overlayVisible.value && (
+    return () => (
+      <>
+        <IconSvg name="menu" onClick={iconClick} class={style.menu_icon} />
+        {overlayVisible.value && (
           <Teleport to="#app">
             <div class={style.mask} onClick={iconClick}></div>
             <div class={style.overlay}>
@@ -52,9 +51,9 @@ export const Overlay = defineComponent({
               </nav>
             </div>
           </Teleport>
-        )
-      }
-    </>
-  }
+        )}
+      </>
+    )
+  },
 })
 export default Overlay

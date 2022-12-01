@@ -1,5 +1,9 @@
 .nav_bar {
-  background-image: linear-gradient(to bottom, var(--navbar-bg-start) 0%, var(--navbar-bg-end) 100%);
+  background-image: linear-gradient(
+    to bottom,
+    var(--navbar-bg-start) 0%,
+    var(--navbar-bg-end) 100%
+  );
   color: var(--navbar-text);
   fill: var(--navbar-text);
   display: flex;

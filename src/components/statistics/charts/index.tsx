@@ -1,8 +1,14 @@
-import { computed, defineComponent, onMounted, PropType, reactive, ref } from 'vue';
-import s from './index.module.scss';
+import {
+  computed,
+  defineComponent,
+  onMounted,
+  PropType,
+  reactive,
+  ref,
+} from 'vue'
+import s from './index.module.scss'
 
-import * as echarts from 'echarts';
-
+import * as echarts from 'echarts'
 
 export const Charts = defineComponent({
   // props: {
@@ -26,45 +32,44 @@ export const Charts = defineComponent({
     ])
     const betterData3 = computed(() => {
       const total = data3.reduce((sum, item) => sum + item.amount, 0)
-      return data3.map(item => ({
+      return data3.map((item) => ({
         ...item,
-        percent: Math.round(item.amount / total * 100) + '%'
+        percent: Math.round((item.amount / total) * 100) + '%',
       }))
     })
     onMounted(() => {
-      if (refDiv.value === undefined) { return }
+      if (refDiv.value === undefined) {
+        return
+      }
       // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(refDiv.value);
+      var myChart = echarts.init(refDiv.value)
       // 绘制图表
       myChart.setOption({
-        grid: [
-          { left: 0, top: 0, right: 0, bottom: 20 }
-        ],
+        grid: [{ left: 0, top: 0, right: 0, bottom: 20 }],
         xAxis: {
           type: 'category',
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         },
         yAxis: {
-          type: 'value'
+          type: 'value',
         },
         series: [
           {
             data: [150, 230, 224, 218, 135, 147, 260],
-            type: 'line'
-          }
-        ]
-      });
-
+            type: 'line',
+          },
+        ],
+      })
     })
     onMounted(() => {
-      if (refDiv2.value === undefined) { return }
+      if (refDiv2.value === undefined) {
+        return
+      }
       // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(refDiv2.value);
+      var myChart = echarts.init(refDiv2.value)
       // 绘制图表
       const option = {
-        grid: [
-          { left: 0, top: 0, right: 0, bottom: 20 }
-        ],
+        grid: [{ left: 0, top: 0, right: 0, bottom: 20 }],
         series: [
           {
             name: 'Access From',
@@ -75,19 +80,19 @@ export const Charts = defineComponent({
               { value: 735, name: 'Direct' },
               { value: 580, name: 'Email' },
               { value: 484, name: 'Union Ads' },
-              { value: 300, name: 'Video Ads' }
+              { value: 300, name: 'Video Ads' },
             ],
             emphasis: {
               itemStyle: {
                 shadowBlur: 10,
                 shadowOffsetX: 0,
-                shadowColor: 'rgba(0, 0, 0, 0.5)'
-              }
-            }
-          }
-        ]
-      };
-      myChart.setOption(option);
+                shadowColor: 'rgba(0, 0, 0, 0.5)',
+              },
+            },
+          },
+        ],
+      }
+      myChart.setOption(option)
     })
     return () => (
       <div class={s.wrapper}>
@@ -97,12 +102,13 @@ export const Charts = defineComponent({
           {betterData3.value.map(({ tag, amount, percent }) => {
             return (
               <div class={s.topItem}>
-                <div class={s.sign}>
-                  {tag.sign}
-                </div>
+                <div class={s.sign}>{tag.sign}</div>
                 <div class={s.bar_wrapper}>
                   <div class={s.bar_text}>
-                    <span> {tag.name} - {percent} </span>
+                    <span>
+                      {' '}
+                      {tag.name} - {percent}{' '}
+                    </span>
                     <span> ￥{amount} </span>
                   </div>
                   <div class={s.bar}>
@@ -115,5 +121,5 @@ export const Charts = defineComponent({
         </div>
       </div>
     )
-  }
+  },
 })

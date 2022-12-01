@@ -33,13 +33,14 @@
     }
   }
 
-  &_name {}
+  &_name {
+  }
 
   &_value {
     display: flex;
     margin-top: 4px;
 
-    >* {
+    > * {
       flex-grow: 1;
     }
   }

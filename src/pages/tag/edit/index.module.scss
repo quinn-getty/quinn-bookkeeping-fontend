@@ -1,6 +1,6 @@
 .menu_icon {
   width: 28px;
-  height: 28px
+  height: 28px;
 }
 
 .tips {
@@ -16,7 +16,8 @@
   margin-top: 8px;
 }
 
-.formLabel {}
+.formLabel {
+}
 
 .formItem {
   min-height: var(--input-min-height);
@@ -41,7 +42,8 @@
     }
   }
 
-  &_name {}
+  &_name {
+  }
 
   &_value {
     display: flex;

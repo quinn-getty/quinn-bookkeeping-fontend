@@ -1,5 +1,6 @@
 {
   "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // 默认格式器改为 prettier
   "editor.codeActionsOnSave": {
     // #每次保存的时候将代码按eslint格式进行修复
     "source.fixAll.eslint": true,

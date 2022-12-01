@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import Components from "unplugin-vue-components/vite";
-import { VantResolver } from "unplugin-vue-components/resolvers";
+import Components from 'unplugin-vue-components/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
 
 import svgstore from './src/vite_plugins/svgstore'
 
@@ -11,8 +11,8 @@ export default defineConfig({
   server: {
     port: 9987,
     proxy: {
-      '/api/v1': 'http://localhost:9988'
-    }
+      '/api/v1': 'http://localhost:9988',
+    },
   },
   plugins: [
     vue(),
@@ -21,8 +21,8 @@ export default defineConfig({
     }),
     vueJsx({
       transformOn: true,
-      mergeProps: true
+      mergeProps: true,
     }),
     svgstore(),
-  ]
+  ],
 })

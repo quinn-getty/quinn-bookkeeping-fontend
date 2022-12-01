@@ -1,29 +1,35 @@
-import { defineComponent } from 'vue';
-import { RouterLink } from 'vue-router';
-import WelcomeLayout from '../layout';
-import IconSvg from '../../icon';
-import style from "../index.module.scss"
-import JumpButton from '../jump-button';
+import { defineComponent } from 'vue'
+import { RouterLink } from 'vue-router'
+import WelcomeLayout from '../layout'
+import IconSvg from '../../icon'
+import style from '../index.module.scss'
+import JumpButton from '../jump-button'
 
 export const TwoFooter = () => {
-  return <>
-    <RouterLink to='/welcome/1'>上一步</RouterLink>
-    <RouterLink to='/welcome/3'>下一页</RouterLink>
-    <JumpButton />
-  </>
+  return (
+    <>
+      <RouterLink to="/welcome/1">上一步</RouterLink>
+      <RouterLink to="/welcome/3">下一页</RouterLink>
+      <JumpButton />
+    </>
+  )
 }
 TwoFooter.displayName = 'TwoFooter'
 
 export const TwoMain = defineComponent({
   setup: (props, context) => {
     const slots = {
-      icon: () => <IconSvg name='clock' class={style.icon} />,
-      text: () => <h2> 会挣钱<br /> 还要会省钱 </h2>,
+      icon: () => <IconSvg name="clock" class={style.icon} />,
+      text: () => (
+        <h2>
+          {' '}
+          会挣钱
+          <br /> 还要会省钱{' '}
+        </h2>
+      ),
     }
-    return () => (
-      <WelcomeLayout v-slots={slots} />
-    )
-  }
+    return () => <WelcomeLayout v-slots={slots} />
+  },
 })
 TwoMain.displayName = 'TwoMain'
 
