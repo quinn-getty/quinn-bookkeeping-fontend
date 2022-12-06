@@ -37,9 +37,7 @@ const useTags = (kind: string) => {
     loading.value = false
     list.value.push(...response.data.resources)
     page.value++
-    hasMore.value =
-      +response.data.pager.page * +response.data.pager.per_page !==
-      response.data.pager.count
+    hasMore.value = list.value.length !== response.data.pager.count
   }
   onMounted(() => {
     getList()

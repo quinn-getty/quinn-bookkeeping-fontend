@@ -1,7 +1,10 @@
 import { defineComponent, PropType, reactive, toRaw } from 'vue'
-import { RulesType } from '../../../shared/validata'
+import { routerKey, useRoute } from 'vue-router'
+import http from '../../../shared/axios'
+import { RulesType, hasError, validata } from '../../../shared/validata'
 import Button from '../../button'
 import { Form, FormItem } from '../../form'
+
 import s from './index.module.scss'
 export const TagForm = defineComponent({
   props: {
@@ -10,23 +13,35 @@ export const TagForm = defineComponent({
     },
   },
   setup: (props, context) => {
+    const route = useRoute()
     const formData = reactive({
       name: '',
       sign: '',
     })
     const errors = reactive<{ [k in keyof typeof formData]?: string[] }>({})
-    const onSubmit = (e: Event) => {
+    const onSubmit = async (e: Event) => {
+      e.preventDefault()
       const rules: RulesType<typeof formData> = [
         { key: 'name', required: true, message: '必填' },
-        { key: 'name', regexp: /^.{1,4}$/, message: '长度为4' },
         { key: 'sign', required: true, message: '必填' },
       ]
       Object.assign(errors, {
-        name: undefined,
-        sign: undefined,
+        email: [],
+        code: [],
       })
-      Object.assign(errors, validate(formData, rules))
-      e.preventDefault()
+      Object.assign(errors, validata(formData, rules))
+      console.log(formData)
+
+      if (hasError(errors)) {
+        return
+      }
+      const response = await http
+        .post('/tags', {
+          kind: route.query.type!.toString(),
+          ...formData,
+        })
+        .catch(() => {})
+      console.log(response)
     }
     return () => (
       <Form onSubmit={onSubmit}>
@@ -46,16 +61,11 @@ export const TagForm = defineComponent({
           <p class={s.tips}>记账时长按标签即可进行编辑</p>
         </FormItem>
         <FormItem>
-          <Button class={[s.button]}>确定</Button>
+          <Button type="submit" class={[s.button]}>
+            确定
+          </Button>
         </FormItem>
       </Form>
     )
   },
 })
-
-function validate(
-  formData: { name: string; sign: string },
-  rules: RulesType<{ name: string; sign: string }>,
-): any {
-  throw new Error('Function not implemented.')
-}

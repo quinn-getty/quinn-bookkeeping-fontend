@@ -5,6 +5,7 @@ import IconSvg from '../../../components/icon'
 import InputPad from '../../../components/input-pad'
 import MainLayout from '../../../components/main-layout'
 import { Tab, Tabs } from '../../../components/tabs'
+import TagItem from '../../../components/tag/item'
 import useTags from '../../../hooks/useTags'
 import http from '../../../shared/axios'
 import style from './index.module.scss'
@@ -49,10 +50,12 @@ export const ItemCreate = defineComponent({
                           <div class={style.name}>新增</div>
                         </div>
                         {expenses.list.value.map((tag) => (
-                          <div class={[style.tag, style.selected]}>
-                            <div class={style.sign}>{tag.sign}</div>
-                            <div class={style.name}>{tag.name}</div>
-                          </div>
+                          <TagItem
+                            sign={tag.sign}
+                            name={tag.name}
+                            id={tag.id}
+                            value={''}
+                          />
                         ))}
                       </div>
                       <div class={style.more}>
@@ -63,8 +66,7 @@ export const ItemCreate = defineComponent({
                             onClick={expenses.getList}
                             class={style.button}
                           >
-                            {' '}
-                            加载更多...{' '}
+                            加载更多...
                           </button>
                         ) : (
                           <>没有更多，请添加！</>
@@ -83,10 +85,12 @@ export const ItemCreate = defineComponent({
                           <div class={style.name}>新增</div>
                         </div>
                         {income.list.value.map((tag) => (
-                          <div class={[style.tag, style.selected]}>
-                            <div class={style.sign}>{tag.sign}</div>
-                            <div class={style.name}>{tag.name}</div>
-                          </div>
+                          <TagItem
+                            sign={tag.sign}
+                            name={tag.name}
+                            id={tag.id}
+                            value={''}
+                          />
                         ))}
                       </div>
                       <div class={style.more}>

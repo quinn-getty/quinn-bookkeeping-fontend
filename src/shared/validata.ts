@@ -3,14 +3,13 @@ interface FormDataType {
 }
 
 type FNType = string | number | null | undefined | FormDataType
-
 export type RulesType<T> = RuleType<T>[]
 type RuleType<T> = {
   key: keyof T
   message?: string
   required?: true
   regexp?: RegExp
-  fn?: <F>(_: F) => { status: boolean; message?: string }
+  fn?: <A>(_: A) => { status: boolean; message?: string }
 }
 
 type ErrorsType<T> = {
@@ -36,10 +35,9 @@ export const validata = <T>(formData: T, rules: RulesType<T>) => {
       isError = !value
     } else if (item?.regexp) {
       console.log('regexp', !item.regexp.test((value || '').toString()))
-
       isError = !item.regexp.test((value || '').toString())
     } else if (item?.fn) {
-      const { status, message: msg } = item.fn(value)
+      const { status, message: msg } = item.fn<typeof value>(value)
       isError = !status
       message = msg || message
     }
